@@ -12,7 +12,7 @@
 
 
 
-    <changeSet id="2024-11-17 Create users table" author="mvaikm">
+    <changeSet id="2025-3-11 Create users table" author="mvaikm">
         <createTable tableName="users">
             <column name="id" type="bigint" autoIncrement="true">
                 <constraints primaryKey="true"/>
@@ -24,12 +24,47 @@
         </createTable>
     </changeSet>
 
-
-
-    <changeSet id="2024-11-17 Create sequence for user id" author="Markus Vaikmäe">
+    <changeSet id="2025-3-11 Create sequence for user id" author="mvaikm">
         <createSequence sequenceName="user_seq"
                         startValue="1"
                         incrementBy="1"/>
     </changeSet>
 
+    <changeSet id="2025-3-11 Create flights table" author="mvaikm">
+        <createTable tableName="flights">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="flight_number" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="departure_city" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="destination_city" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="departure_time" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="arrival_time" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="duration_in_min" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="base_price" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="available_seats" type="int">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="2025-3-11 Create sequence for flight id" author="mvaikm">
+        <createSequence sequenceName="flights_seq"
+                        startValue="1"
+                        incrementBy="1"/>
+    </changeSet>
 </databaseChangeLog>

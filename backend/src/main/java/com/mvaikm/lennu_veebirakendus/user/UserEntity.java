@@ -3,8 +3,6 @@ package com.mvaikm.lennu_veebirakendus.user;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.time.LocalDate;
-
 @Getter
 @Setter
 @Builder
