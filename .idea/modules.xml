@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/com.mvaikm.lennu-veebirakendus.iml" filepath="$PROJECT_DIR$/.idea/modules/com.mvaikm.lennu-veebirakendus.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/com.mvaikm.lennu-veebirakendus.main.iml" filepath="$PROJECT_DIR$/.idea/modules/com.mvaikm.lennu-veebirakendus.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/com.mvaikm.lennu-veebirakendus.test.iml" filepath="$PROJECT_DIR$/.idea/modules/com.mvaikm.lennu-veebirakendus.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/lennu-veebirakendus.iml" filepath="$PROJECT_DIR$/.idea/lennu-veebirakendus.iml" />
+    </modules>
+  </component>
+</project>
