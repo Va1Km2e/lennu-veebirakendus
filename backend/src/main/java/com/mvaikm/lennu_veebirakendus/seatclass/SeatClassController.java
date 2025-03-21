@@ -1,15 +1,13 @@
 package com.mvaikm.lennu_veebirakendus.seatclass;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/seat-class")
+@RequiredArgsConstructor
 public class SeatClassController {
     private final SeatClassService seatClassService;
-
-    public SeatClassController( SeatClassService seatClassService) {
-        this.seatClassService = seatClassService;
-    }
 
 
     @DeleteMapping("/{id}")

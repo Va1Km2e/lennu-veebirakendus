@@ -1,5 +1,6 @@
 package com.mvaikm.lennu_veebirakendus.seat;
 
+import com.mvaikm.lennu_veebirakendus.booking.BookingEntity;
 import com.mvaikm.lennu_veebirakendus.flight.FlightEntity;
 import com.mvaikm.lennu_veebirakendus.seatclass.SeatClassEntity;
 import jakarta.persistence.*;
@@ -36,4 +37,8 @@ public class SeatEntity {
 
     @Column(name = "price", nullable = false)
     private BigDecimal price;
+
+    @ManyToOne
+    @JoinColumn(name = "booking_id")
+    private BookingEntity booking;
 }

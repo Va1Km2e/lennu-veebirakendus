@@ -91,6 +91,48 @@
                         incrementBy="1"/>
     </changeSet>
 
+    <changeSet id="2025-03-20 create bookings table" author="mvaikm">
+        <createTable tableName="bookings">
+
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+
+            <column name="user_id" type="bigint">
+                <constraints nullable="false"
+                             foreignKeyName="fk_booking_user"
+                             referencedTableName="users"
+                             referencedColumnNames="id"/>
+            </column>
+
+            <column name="flight_id" type="bigint">
+                <constraints nullable="false"
+                             foreignKeyName="fk_booking_flight"
+                             referencedTableName="flights"
+                             referencedColumnNames="id"/>
+            </column>
+
+            <column name="total_price" type="decimal(10,2)">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="status" type="varchar(20)">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="creation_date" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+
+        </createTable>
+    </changeSet>
+
+    <changeSet id="2025-03-11 create bookings sequence" author="mvaikm">
+        <createSequence sequenceName="booking_seq"
+                        startValue="1"
+                        incrementBy="1"/>
+    </changeSet>
+
     <changeSet id="2025-03-11 create seats table" author="mvaikm">
         <createTable tableName="seats">
             <column name="id" type="bigint" autoIncrement="true">
@@ -117,6 +159,13 @@
             <column name="price" type="decimal(10,2)">
                 <constraints nullable="false"/>
             </column>
+
+            <column name="booking_id" type="bigint">
+                <constraints nullable="true"
+                             foreignKeyName="fk_seat_booking"
+                             referencedTableName="bookings"
+                             referencedColumnNames="id"/>
+            </column>
         </createTable>
     </changeSet>
 
@@ -125,5 +174,7 @@
                         startValue="1"
                         incrementBy="1"/>
     </changeSet>
+
+
 
 </databaseChangeLog>

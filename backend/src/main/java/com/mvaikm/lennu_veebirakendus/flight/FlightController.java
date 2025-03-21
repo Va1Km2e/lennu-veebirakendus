@@ -1,15 +1,13 @@
 package com.mvaikm.lennu_veebirakendus.flight;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/flight")
+@RequiredArgsConstructor
 public class FlightController {
-    private FlightService flightService;
-
-    public FlightController(FlightService flightService) {
-        this.flightService = flightService;
-    }
+    private final FlightService flightService;
 
 
     @DeleteMapping("/{id}")
@@ -18,12 +16,7 @@ public class FlightController {
     }
 
     @PostMapping("/register")
-    public String createFlight(@RequestBody FlightDTO flightDTO) {
-        try {
-            flightService.addFlight(flightDTO);
-            return "Flight created successfully";
-        } catch (RuntimeException e) {
-            return "Error: " + e.getMessage();
-        }
+    public void createFlight(@RequestBody FlightDTO flightDTO) {
+        flightService.addFlight(flightDTO);
     }
 }
