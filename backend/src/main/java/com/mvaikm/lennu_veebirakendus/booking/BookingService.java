@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -20,7 +21,6 @@ public class BookingService {
 
     private final BookingRepository bookingRepository;
     private final SeatRepository seatRepository;
-    private final UserRepository userRepository;
     private final FlightRepository flightRepository;
 
     @Transactional
@@ -31,17 +31,10 @@ public class BookingService {
 
         bookingEntity.setBookingDate(bookingDTO.getBookingDate());
 
-        //Retrieve UserEntity by userId
-        UserEntity user = userRepository.findById(bookingDTO.getUserId())
-                .orElseThrow(() -> new RuntimeException("User not found with id: " + bookingDTO.getUserId()));
-        bookingEntity.setUser(user);
-
-        //Retrieve FlightEntity by flightId
         FlightEntity flight = flightRepository.findById(bookingDTO.getFlightId())
                 .orElseThrow(() -> new RuntimeException("Flight not found with id: " + bookingDTO.getFlightId()));
         bookingEntity.setFlight(flight);
 
-        //associate seats with booking
         for (Long seatId : bookingDTO.getSeatIds()) {
             SeatEntity seat = seatRepository.findById(seatId)
                     .orElseThrow(() -> new RuntimeException("Seat not found with id: " + seatId));
@@ -52,7 +45,9 @@ public class BookingService {
 
             seat.setBooking(bookingEntity);
             seat.setOccupied(true);
+
             seat.getFlight().setAvailableSeats(seat.getFlight().getAvailableSeats() - 1);
+
             seats.add(seat);
 
             totalPrice = totalPrice.add(seat.getPrice());
@@ -60,8 +55,12 @@ public class BookingService {
 
         bookingEntity.setSeats(seats);
         bookingEntity.setTotalPrice(totalPrice);
+
         bookingEntity.setStatus(BookingStatus.valueOf("COMPLETED"));
 
+        bookingEntity.setFullname(bookingDTO.getFullname());
+
+        bookingEntity.setPhoneNumber(bookingDTO.getPhoneNumber());
 
         bookingRepository.save(bookingEntity);
     }

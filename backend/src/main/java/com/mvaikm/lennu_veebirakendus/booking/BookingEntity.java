@@ -2,7 +2,6 @@ package com.mvaikm.lennu_veebirakendus.booking;
 
 import com.mvaikm.lennu_veebirakendus.flight.FlightEntity;
 import com.mvaikm.lennu_veebirakendus.seat.SeatEntity;
-import com.mvaikm.lennu_veebirakendus.user.UserEntity;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -24,9 +23,11 @@ public class BookingEntity {
     @SequenceGenerator(name = "booking_generator", sequenceName = "booking_seq", allocationSize = 1)
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id", nullable = false)
-    private UserEntity user;
+    @Column(name = "phone_number")
+    private String phoneNumber;
+
+    @Column(name = "fullname")
+    private String fullname;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "flight_id", nullable = false)

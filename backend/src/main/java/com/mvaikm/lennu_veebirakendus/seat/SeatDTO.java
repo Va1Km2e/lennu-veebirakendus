@@ -6,7 +6,7 @@ import java.math.BigDecimal;
 
 @Data
 public class SeatDTO {
-    private Long seatId;
+    private Long id;
     private Long flightId;
     private String seatNumber;
     private Long classId;

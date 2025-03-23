@@ -15,7 +15,8 @@ import java.util.List;
 @NoArgsConstructor
 public class BookingDTO {
     private Long id;
-    private Long userId;
+    private String phoneNumber;
+    private String fullname;
     private Long flightId;
     private List<Long> seatIds;
     private String status;

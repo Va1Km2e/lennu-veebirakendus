@@ -27,4 +27,9 @@ public class FlightController {
             @Valid @ModelAttribute FlightSearchCriteria criteria) {
         return flightService.findFlights(criteria);
     }
+
+    @GetMapping("/{id}")
+    public FlightDTO getFlight(@PathVariable Long id) {
+        return flightService.getFlightById(id);
+    }
 }

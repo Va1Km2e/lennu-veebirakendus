@@ -1,5 +1,7 @@
 package com.mvaikm.lennu_veebirakendus.seat;
 
+import com.mvaikm.lennu_veebirakendus.pageresponse.PageResponse;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,5 +19,16 @@ public class SeatController {
     @DeleteMapping("/{id}")
     public void deleteSeat(@PathVariable Long id) {
         seatService.deleteSeat(id);
+    }
+
+    @GetMapping
+    public PageResponse<SeatDTO> getSeatsInFlight(
+            @Valid @ModelAttribute SeatSearchCriteria criteria) {
+        return seatService.findSeats(criteria);
+    }
+
+    @GetMapping("/{id}")
+    public SeatDTO getSeatById(@PathVariable Long id) {
+        return seatService.getSeatById(id);
     }
 }

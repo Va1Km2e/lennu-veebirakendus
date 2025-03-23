@@ -2,7 +2,6 @@
   <div class="admin-page">
     <h1>Admin Panel</h1>
 
-    <!-- User Registration Form -->
     <section>
       <h2>Register User</h2>
       <form @submit.prevent="submitUserForm">
@@ -26,7 +25,6 @@
       </form>
     </section>
 
-    <!-- Flight Registration Form -->
     <section>
       <h2>Register Flight</h2>
       <form @submit.prevent="submitFlightForm">
@@ -62,7 +60,6 @@
       </form>
     </section>
 
-    <!-- Seat Class Registration Form -->
     <section>
       <h2>Register Seat Class</h2>
       <form @submit.prevent="submitSeatClassForm">
@@ -82,7 +79,6 @@
       </form>
     </section>
 
-    <!-- Seat Registration Form -->
     <section>
       <h2>Register Seat</h2>
       <form @submit.prevent="submitSeatForm">
