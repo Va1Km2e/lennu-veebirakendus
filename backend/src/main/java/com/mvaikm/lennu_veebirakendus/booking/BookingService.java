@@ -52,6 +52,7 @@ public class BookingService {
 
             seat.setBooking(bookingEntity);
             seat.setOccupied(true);
+            seat.getFlight().setAvailableSeats(seat.getFlight().getAvailableSeats() - 1);
             seats.add(seat);
 
             totalPrice = totalPrice.add(seat.getPrice());

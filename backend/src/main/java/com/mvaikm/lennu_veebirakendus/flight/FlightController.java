@@ -1,5 +1,7 @@
 package com.mvaikm.lennu_veebirakendus.flight;
 
+import com.mvaikm.lennu_veebirakendus.pageresponse.PageResponse;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,5 +20,11 @@ public class FlightController {
     @PostMapping("/register")
     public void createFlight(@RequestBody FlightDTO flightDTO) {
         flightService.addFlight(flightDTO);
+    }
+
+    @GetMapping
+    public PageResponse<FlightDTO> getMealPrepsInRange(
+            @Valid @ModelAttribute FlightSearchCriteria criteria) {
+        return flightService.findFlights(criteria);
     }
 }

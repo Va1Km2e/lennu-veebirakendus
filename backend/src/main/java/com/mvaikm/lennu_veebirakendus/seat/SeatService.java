@@ -22,10 +22,20 @@ public class SeatService {
         seatEntity.setSeatNumber(seatDTO.getSeatNumber());
 
         seatEntity.setPrice(seatEntity.getFlight().getBasePrice().multiply(seatEntity.getSeatClass().getPriceModifier()));
+        seatEntity.getFlight().setAvailableSeats(seatEntity.getFlight().getAvailableSeats() + 1);
         seatRepository.save(seatEntity);
     }
 
     public void deleteSeat(Long id) {
+        SeatEntity seat = seatRepository.findById(id).orElseThrow(
+                () -> new RuntimeException("Seat not found"));
+
+        seat.getFlight().setAvailableSeats(seat.getFlight().getAvailableSeats() - 1);
         seatRepository.deleteById(id);
+
+    }
+
+    public void addSeat(Long id, String seatNumber, int classId) {
+
     }
 }
