@@ -19,7 +19,7 @@ public class FlightEntity {
     @SequenceGenerator(name="flight_generator", sequenceName = "flights_seq", allocationSize=1)
     private Long id;
 
-    @Column(name = "flight_number")
+    @Column(name = "flight_number", unique = true)
     private String flightNumber;
 
     @Column(name = "departure_city")
