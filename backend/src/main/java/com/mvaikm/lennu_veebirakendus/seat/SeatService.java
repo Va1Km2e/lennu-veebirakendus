@@ -24,4 +24,8 @@ public class SeatService {
         seatEntity.setPrice(seatEntity.getFlight().getBasePrice().multiply(seatEntity.getSeatClass().getPriceModifier()));
         seatRepository.save(seatEntity);
     }
+
+    public void deleteSeat(Long id) {
+        seatRepository.deleteById(id);
+    }
 }

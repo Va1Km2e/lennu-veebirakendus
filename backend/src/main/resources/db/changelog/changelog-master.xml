@@ -17,10 +17,14 @@
             <column name="id" type="bigint" autoIncrement="true">
                 <constraints primaryKey="true"/>
             </column>
-            <column name="username" type="varchar(255)"/>
+            <column name="username" type="varchar(255)">
+                <constraints nullable="false" unique="true"/>
+            </column>
             <column name="first_name" type="varchar(255)"/>
             <column name="last_name" type="varchar(255)"/>
-            <column name="password" type="varchar(255)"/>
+            <column name="password" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
         </createTable>
     </changeSet>
 
@@ -36,7 +40,7 @@
                 <constraints primaryKey="true"/>
             </column>
             <column name="flight_number" type="varchar(255)">
-                <constraints nullable="false"/>
+                <constraints nullable="false" unique="true"/>
             </column>
             <column name="departure_city" type="varchar(255)">
                 <constraints nullable="false"/>
@@ -93,37 +97,30 @@
 
     <changeSet id="2025-03-20 create bookings table" author="mvaikm">
         <createTable tableName="bookings">
-
             <column name="id" type="bigint" autoIncrement="true">
                 <constraints primaryKey="true"/>
             </column>
-
             <column name="user_id" type="bigint">
                 <constraints nullable="false"
                              foreignKeyName="fk_booking_user"
                              referencedTableName="users"
                              referencedColumnNames="id"/>
             </column>
-
             <column name="flight_id" type="bigint">
                 <constraints nullable="false"
                              foreignKeyName="fk_booking_flight"
                              referencedTableName="flights"
                              referencedColumnNames="id"/>
             </column>
-
             <column name="total_price" type="decimal(10,2)">
                 <constraints nullable="false"/>
             </column>
-
             <column name="status" type="varchar(20)">
                 <constraints nullable="false"/>
             </column>
-
             <column name="creation_date" type="datetime">
                 <constraints nullable="false"/>
             </column>
-
         </createTable>
     </changeSet>
 
@@ -145,7 +142,7 @@
                              referencedColumnNames="id"/>
             </column>
             <column name="seat_number" type="varchar(10)">
-                <constraints nullable="false" unique="true"/>
+                <constraints nullable="false"/>
             </column>
             <column name="class_id" type="bigint">
                 <constraints nullable="false"
@@ -159,7 +156,6 @@
             <column name="price" type="decimal(10,2)">
                 <constraints nullable="false"/>
             </column>
-
             <column name="booking_id" type="bigint">
                 <constraints nullable="true"
                              foreignKeyName="fk_seat_booking"
@@ -174,7 +170,5 @@
                         startValue="1"
                         incrementBy="1"/>
     </changeSet>
-
-
 
 </databaseChangeLog>

@@ -16,7 +16,7 @@ public class UserEntity {
     @SequenceGenerator(name="user_generator", sequenceName = "user_seq", allocationSize=1)
     private Long id;
 
-    @Column(name = "username")
+    @Column(name = "username", nullable = false, unique = true)
     private String username;
 
     @Column(name = "first_name")
@@ -25,6 +25,6 @@ public class UserEntity {
     @Column(name = "last_name")
     private String lastName;
 
-    @Column(name = "password")
+    @Column(name = "password", nullable = false)
     private String password;
 }

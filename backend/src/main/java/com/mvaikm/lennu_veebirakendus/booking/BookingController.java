@@ -10,7 +10,12 @@ public class BookingController {
     private final BookingService bookingService;
 
     @PostMapping("/register")
-    public void createBooking(@RequestBody BookingDTO bookingDTO) {
+    public void registerBooking(@RequestBody BookingDTO bookingDTO) {
         bookingService.createBooking(bookingDTO);
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteBooking(@PathVariable Long id) {
+        bookingService.deleteBooking(id);
     }
 }

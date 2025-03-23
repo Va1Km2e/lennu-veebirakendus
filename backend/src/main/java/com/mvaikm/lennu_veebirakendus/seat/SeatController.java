@@ -13,4 +13,9 @@ public class SeatController {
     public void registerSeat(@RequestBody SeatDTO seatDTO) {
         seatService.addSeat(seatDTO);
     }
+
+    @DeleteMapping("/{id}")
+    public void deleteSeat(@PathVariable Long id) {
+        seatService.deleteSeat(id);
+    }
 }

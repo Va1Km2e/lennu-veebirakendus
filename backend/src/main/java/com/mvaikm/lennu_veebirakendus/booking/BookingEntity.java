@@ -18,28 +18,30 @@ import java.util.List;
 @Table(name = "bookings")
 @Entity
 public class BookingEntity {
+
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "booking_generator")
-    @SequenceGenerator(name="booking_generator", sequenceName = "booking_seq", allocationSize=1)
+    @SequenceGenerator(name = "booking_generator", sequenceName = "booking_seq", allocationSize = 1)
     private Long id;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
     private UserEntity user;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "flight_id", nullable = false)
     private FlightEntity flight;
 
-    @OneToMany(mappedBy = "booking", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "booking")
     private List<SeatEntity> seats;
 
-    @Column(name = "total_price")
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private BookingStatus status;
+
+    @Column(name = "creation_date", nullable = false)
+    private LocalDateTime bookingDate;
+
+    @Column(nullable = false, precision = 10, scale = 2)
     private BigDecimal totalPrice;
-
-    @Column(name = "status")
-    private String status;
-
-    @Column(name = "creation_date")
-    private LocalDateTime creationDate;
 }

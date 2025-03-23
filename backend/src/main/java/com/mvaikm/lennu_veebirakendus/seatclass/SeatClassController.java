@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.*;
 public class SeatClassController {
     private final SeatClassService seatClassService;
 
-
     @DeleteMapping("/{id}")
     public void deleteSeatClass(@PathVariable Long id) {
         seatClassService.deleteSeatClassById(id);
